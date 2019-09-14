@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>React-Template</title>
+		<link rel="stylesheet" type="text/css" href="../css/main.css"/>
+		<script src="../js/react.min.js"></script>
+		<!-- 写相应的react代码 -->
+		<script src="../js/react-dom.min.js"></script>
+		<!-- 把react插入到相应的dom里边 -->
+		<script src="../js/browser.min.js"></script>
+		<!-- 将react语法转化为js语法 -->
+	</head>
+
+	<body>
+		<!-- 容器  -->
+		<div id="container"></div>
+
+		<!-- React组件、属性和事件的使用 -->
+		<!-- ReactDOM.render 是React的最基本的方法，用于将模板转为HTML语言，并插入到DOM节点中 -->
+		<script type="text/babel">
+			/*创建一个组件 render() return 返回的jsx语法*/ 
+			var Comment= React.createClass({ 
+			/* 所有组件类都必须拥有自己的render；组件类的名字第一个字母必须大写 */ 
+				edit:function(){
+						alert("Editing comment!");
+				},
+				remove:function(){
+						alert("removing comment!");
+				},
+				render:function(){ 
+					return (
+						/* return返回的标签 必须有且仅有一个根标签(每个组件只能有一个根标签) */
+						<div className="commentContainer">
+							<div>{this.props.children}</div>
+							<button className="button-primary" onClick={this.edit}>Edit</button>
+							<button className="button-danger" onClick={this.remove}>Remove</button>
+						</div>
+					); 
+				} 
+			}); 
+		/* 容器 一定是id才能插入到dom节点 */
+		ReactDOM.render( 
+			/* 在调用的时候，如果想要调用多次组件，那么也需要给组件一个根标签 */
+			<div className="board">
+				<Comment>Hello Everyone!</Comment>
+				<Comment>Welcome to Lanou 课堂！</Comment>
+				<Comment>希望大家能够快速掌握React.js</Comment>
+			</div>,
+			document.getElementById('container')
+		);
+    </script>
+	</body>
+
+</html>
